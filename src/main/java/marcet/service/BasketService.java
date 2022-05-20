@@ -23,15 +23,10 @@ import java.util.stream.Collectors;
 @Service
 public class BasketService {
 
-    private static ArrayList<ProductDTO> basketList;
     private final ProductService productService;
     private final UserRepository userRepository;
     private final BasketItemRepository basketItemRepository;
 
-    @PostConstruct
-    public void init() {
-        basketList = new ArrayList<>();
-    }
 
     public List<BasketItemDTO> addProductToBasket(ProductDTO productDTO, String username) {
         User user = userRepository.findByUsername(username).get();
@@ -51,7 +46,7 @@ public class BasketService {
     }
 
     public List<BasketItemDTO> getBasket(String username) {
-        List<BasketItemDTO> basketlist = new ArrayList<>();
+        List<BasketItemDTO> basketlist;
         User user = userRepository.findByUsername(username).get();
         basketlist = basketItemRepository.findAllByUser(user).stream().map(BasketItemDTO::new).collect(Collectors.toList());
         return basketlist;

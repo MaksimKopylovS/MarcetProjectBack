@@ -15,12 +15,9 @@ public class ProductSpecifications {
     }
 
     private static Specification<Product> FilterByCategory(Long id) {
-        return new Specification<Product>() {
-            @Override
-            public Predicate toPredicate(Root<Product> root, CriteriaQuery<?> criteriaQuery, CriteriaBuilder criteriaBuilder) {
-                Join<Product, Category> productCategoryJoin = root.join("categories");
-                return criteriaBuilder.equal(productCategoryJoin.get("categoryId"), id);
-            }
+        return (Specification<Product>) (root, criteriaQuery, criteriaBuilder) -> {
+            Join<Product, Category> productCategoryJoin = root.join("categories");
+            return criteriaBuilder.equal(productCategoryJoin.get("categoryId"), id);
         };
     }
 

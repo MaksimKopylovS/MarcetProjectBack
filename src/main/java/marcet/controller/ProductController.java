@@ -4,22 +4,14 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import marcet.dto.ImageDTO;
 import marcet.dto.ProductDTO;
-import marcet.model.Category;
-import marcet.model.Product;
 import marcet.service.ProductService;
 import marcet.specifications.ProductSpecifications;
-import org.springframework.core.io.Resource;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.*;
 
-import java.io.File;
 import java.io.IOException;
-import java.nio.file.FileStore;
-import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
@@ -38,7 +30,6 @@ public class ProductController {
         for (ProductDTO p : productDTOS){
             log.info("{} {} {} {} {} {} ", p.getTitle(), p.getPrice(), p.getShortDescription());
         }
-        System.out.println("HEllll");
         return productService.getProduct();
     }
 
@@ -62,6 +53,7 @@ public class ProductController {
     @RequestMapping(value = "/get-all", method = RequestMethod.GET)
     public Page<ProductDTO> findAllProducts(@RequestParam MultiValueMap<String, String> params,
                                             @RequestParam(name = "page", defaultValue = "1") Integer page) {
+        System.out.println(params.getClass());
         System.out.println(page + " Пришло в ProductController");
         Iterator<String> iteratot = params.keySet().iterator();
         log.info("params size - {}", params.size());

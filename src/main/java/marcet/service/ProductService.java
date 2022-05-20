@@ -90,7 +90,7 @@ public class ProductService {
         return convertToDto(product);
     }
 
-    public void deleteProductById(Long product_id) { //LSS добавил удаление продукта из БД
+    public void deleteProductById(Long product_id) {
         productRepository.deleteById(product_id);
     }
 
@@ -98,7 +98,7 @@ public class ProductService {
         return convertToDto(productRepository.findById(product_id).get());
     }
 
-    public Product findProductById(Long product_id) { //LSS поиск продукта по id, Optional может лучше отправлять? или здесь isPresent?
+    public Product findProductById(Long product_id) {
         return productRepository.findById(product_id).get();
     }
 
