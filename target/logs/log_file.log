@@ -1,0 +1,31 @@
+2021-12-13 10:33:00.416  INFO 13464 --- [main] marcet.MarcetServiceApplication          : Starting MarcetServiceApplication v0.0.1-SNAPSHOT on WIN-P96KM697CTJ with PID 13464 (C:\java\GeekBrains\Java_lesson\FourthFour\Level_Four_Itogoviy_Proekt\Monolith\Marcet\target\Marcet_Back-0.0.1-SNAPSHOT.jar started by User in C:\java\GeekBrains\Java_lesson\FourthFour\Level_Four_Itogoviy_Proekt\Monolith\Marcet\target)
+2021-12-13 10:33:00.424  INFO 13464 --- [main] marcet.MarcetServiceApplication          : No active profile set, falling back to default profiles: default
+2021-12-13 10:33:03.169  INFO 13464 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data repositories in DEFAULT mode.
+2021-12-13 10:33:03.458  INFO 13464 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 252ms. Found 7 repository interfaces.
+2021-12-13 10:33:04.479  INFO 13464 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$a4eb822e] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-12-13 10:33:05.388  INFO 13464 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 5555 (http)
+2021-12-13 10:33:05.488  INFO 13464 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2021-12-13 10:33:05.489  INFO 13464 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.21]
+2021-12-13 10:33:05.512  INFO 13464 --- [main] o.a.catalina.core.AprLifecycleListener   : Loaded APR based Apache Tomcat Native library [1.2.25] using APR version [1.7.0].
+2021-12-13 10:33:05.513  INFO 13464 --- [main] o.a.catalina.core.AprLifecycleListener   : APR capabilities: IPv6 [true], sendfile [true], accept filters [false], random [true].
+2021-12-13 10:33:05.514  INFO 13464 --- [main] o.a.catalina.core.AprLifecycleListener   : APR/OpenSSL configuration: useAprConnector [false], useOpenSSL [true]
+2021-12-13 10:33:05.541  INFO 13464 --- [main] o.a.catalina.core.AprLifecycleListener   : OpenSSL successfully initialized [OpenSSL 1.1.1g  21 Apr 2020]
+2021-12-13 10:33:05.732  INFO 13464 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/api]    : Initializing Spring embedded WebApplicationContext
+2021-12-13 10:33:05.736  INFO 13464 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 5063 ms
+2021-12-13 10:33:06.338  INFO 13464 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2021-12-13 10:33:06.350  WARN 13464 --- [main] com.zaxxer.hikari.util.DriverDataSource  : Registered driver with driverClassName=com.mysql.jdbc.Driver was not found, trying direct instantiation.
+2021-12-13 10:33:07.375  INFO 13464 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2021-12-13 10:33:07.622  INFO 13464 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+2021-12-13 10:33:08.027  INFO 13464 --- [main] org.hibernate.Version                    : HHH000412: Hibernate Core {5.3.10.Final}
+2021-12-13 10:33:08.084  INFO 13464 --- [main] org.hibernate.cfg.Environment            : HHH000206: hibernate.properties not found
+2021-12-13 10:33:08.506  INFO 13464 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.0.4.Final}
+2021-12-13 10:33:09.135  INFO 13464 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQLDialect
+2021-12-13 10:33:10.580  INFO 13464 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021-12-13 10:33:11.826  INFO 13464 --- [main] o.h.h.i.QueryTranslatorFactoryInitiator  : HHH000397: Using ASTQueryTranslatorFactory
+2021-12-13 10:33:12.736  WARN 13464 --- [main] aWebConfiguration$JpaWebMvcConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2021-12-13 10:33:12.994  INFO 13464 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@6f5e16cf, org.springframework.security.web.context.SecurityContextPersistenceFilter@63f855b, org.springframework.security.web.header.HeaderWriterFilter@3878be7b, org.springframework.web.filter.CorsFilter@750a04ec, org.springframework.security.web.authentication.logout.LogoutFilter@5b5b59, marcet.configs.JwtRequestFilter@293d0107, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@4cffcc61, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@76bf1bb8, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@49e2b3c5, org.springframework.security.web.session.SessionManagementFilter@4c5a2baf, org.springframework.security.web.access.ExceptionTranslationFilter@3d9f5016, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@e829999]
+2021-12-13 10:33:13.316  INFO 13464 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2021-12-13 10:33:13.806  INFO 13464 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 5555 (http) with context path '/api'
+2021-12-13 10:33:13.813  INFO 13464 --- [main] marcet.MarcetServiceApplication          : Started MarcetServiceApplication in 15.262 seconds (JVM running for 16.534)

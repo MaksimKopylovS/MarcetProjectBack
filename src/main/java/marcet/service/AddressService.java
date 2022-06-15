@@ -17,6 +17,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
+/*Класс сервис для работы с адресом*/
 @Slf4j
 @Service
 @AllArgsConstructor
@@ -26,22 +27,29 @@ public class AddressService {
     private final UserRepository userRepository;
     private final ModelMapper modelMapper;
 
+    /*Конвертация модели в ДТО*/
     public AddressDTO convertToDto(Address address){
-        AddressDTO addressDTO = modelMapper.map(address, AddressDTO.class);
-        return addressDTO;
+        return modelMapper.map(address, AddressDTO.class);
     }
 
+    /*Конвертация ДТО в модель*/
     public Address convertToEntity(AddressDTO addressDTO) throws ParserException {
-        Address address = modelMapper.map(addressDTO, Address.class);
-        return address;
+        return modelMapper.map(addressDTO, Address.class);
     }
 
+    /*Получение списка адресов по имени пользователя*/
     public List<AddressDTO> getAddressByUser(String username) {
-        User user = userRepository.findByUsername(username).get();
-        List<AddressDTO> addressList = user.getListAddresses().stream().map(this::convertToDto).collect(Collectors.toList());
-        return addressList;
+        return userRepository
+                .findByUsername(username)
+                .get()
+                .getListAddresses()
+                .stream()
+                .map(this::convertToDto)
+                .collect(Collectors.toList()
+                );
     }
 
+    /*Добавление адреса пользователю*/
     public void addNewAddress(AddressDTO address, String username) {
         address.setAddressId(null);
         address.setUserId(userRepository.findByUsername(username).get().getUserId());
@@ -50,7 +58,8 @@ public class AddressService {
         address.setAddressId(newAddress.getAddressId());
     }
 
-    public Address findAddressById(Long addressId) { // LSS поиск адреса по id
+    /*Поиск адреса по ID*/
+    public Address findAddressById(Long addressId) {
         return addressRepository.findById(addressId).get();
     }
 }

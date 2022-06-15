@@ -1,6 +1,7 @@
 package marcet.service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 
 import marcet.dto.ImageDTO;
@@ -55,6 +56,8 @@ public class ProductService {
     }
 
     public Page<ProductDTO> findAllProducts(Specification<Product> spec, int page, int pageSize) {
+        Page<ProductDTO> products = productRepository.findAll(spec, PageRequest.of(page - 1, pageSize)).map(ProductDTO::new);
+        products.stream().forEach(productDTO -> System.out.println("Q  = " + productDTO.toString()));
         return productRepository.findAll(spec, PageRequest.of(page - 1, pageSize)).map(ProductDTO::new);
     }
 

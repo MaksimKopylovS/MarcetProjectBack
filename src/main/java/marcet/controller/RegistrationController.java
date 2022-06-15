@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
+/*Клас контроллер для регистрации пользователя*/
 @RequiredArgsConstructor
 @RestController
 @CrossOrigin
@@ -16,8 +17,10 @@ public class RegistrationController {
     private final RegistrationService registrationService;
     private final PasswordEncoder passwordEncoder;
 
+    /*Регистрация*/
     @PostMapping("/registration")
     public ResponseEntity<?> registrationUser(@RequestBody UserDTO userDTO) {
+        /*Шифрование пароля пользователя*/
         userDTO.setPassword(passwordEncoder.encode(userDTO.getPassword()));
         try {
             registrationService.registrationUser(userDTO);

@@ -19,6 +19,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.stream.Collectors;
 
+/*Класс для провекри токена*/
 @Component
 @RequiredArgsConstructor
 @Slf4j
@@ -27,11 +28,14 @@ import java.util.stream.Collectors;
 public class JwtRequestFilter extends OncePerRequestFilter {
     private final JwtTokenUtil jwtTokenUtil;
 
+    /*Получаем токен из фронта*/
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
+        /*Проверяем есть ли в запросе заголовок с авторизацией*/
         String authHeader = request.getHeader("Authorization");
         String username = null;
         String jwt = null;
+        /*Если заголовок равен нулю и в заголовок начинается с ключевого слова получаем имя по токену*/
         if (authHeader != null && authHeader.startsWith("Bearer")) {
             jwt = authHeader.substring(7);
             try {
@@ -40,7 +44,10 @@ public class JwtRequestFilter extends OncePerRequestFilter {
                 log.debug("The token is expired");
             }
         }
+
+
         if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
+            /*Если имя пользователя не равна, проходит аутентификация пользователя*/
             UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(
                     username,
                     null,
@@ -48,6 +55,7 @@ public class JwtRequestFilter extends OncePerRequestFilter {
                             .stream().map(SimpleGrantedAuthority::new).collect(Collectors.toList()));
             SecurityContextHolder.getContext().setAuthentication(token);
         }
+        /*запрос и ответ проходит через цепочку фильтров*/
         filterChain.doFilter(request, response);
     }
 }

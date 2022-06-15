@@ -14,6 +14,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
 import java.util.List;
 
+/*Класс контроллер для панели администратора*/
 @Slf4j
 @RestController
 @CrossOrigin
@@ -23,6 +24,7 @@ public class AdminPanelController {
 
     private final ProductService productService;
 
+    /*Добавление нового продукта*/
     @PostMapping("/add")
     @ResponseStatus(HttpStatus.CREATED)
     public ProductDTO createNewProduct(@RequestBody ProductDTO productDTO) {
@@ -30,6 +32,7 @@ public class AdminPanelController {
         return productService.saveNewProduct(productDTO);
     }
 
+    /*Добавление картинки для нового продукта*/
     @PostMapping("/create")
     @ResponseStatus(HttpStatus.CREATED)
     public ProductDTO saveImage(@RequestParam("files") List<MultipartFile> multipartFiles,
@@ -38,6 +41,7 @@ public class AdminPanelController {
         return new ProductDTO();
     }
 
+    /*Редактирование продукта*/
     @PostMapping("/edit")
     @ResponseStatus(HttpStatus.OK)
     public ProductDTO editProduct(@RequestParam("files") List<MultipartFile> multipartFiles,
@@ -46,12 +50,14 @@ public class AdminPanelController {
         return new ProductDTO();
     }
 
+    /*Удаление продукта по ID*/
     @DeleteMapping("/{id}")
     public void deleteProductById(@PathVariable Long id) {
         log.info("Удаление продукта ID - {} ", id);
         productService.deleteProductById(id);
     }
 
+    /*Показать все продукты*/
     @RequestMapping(value = "/get-all", method = RequestMethod.GET)
     public Page<ProductDTO> findAllProductsAdm(@RequestParam MultiValueMap<String, String> params,
                                                @RequestParam(name = "page", defaultValue = "1") Integer page) {

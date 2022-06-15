@@ -16,8 +16,10 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
+/*Сервис для корзины */
 @Slf4j
 @RequiredArgsConstructor
 @Service
@@ -27,14 +29,14 @@ public class BasketService {
     private final UserRepository userRepository;
     private final BasketItemRepository basketItemRepository;
 
-
+    /*Добавление продуктов в корзину пользователя */
     public List<BasketItemDTO> addProductToBasket(ProductDTO productDTO, String username) {
         User user = userRepository.findByUsername(username).get();
         Product product = productService.findProductById(productDTO.getId());
         List<BasketItemDTO> basketlist = getBasket(username);
-        for (int i = 0; i < basketlist.size(); i++) {
-            if (basketlist.get(i).getProductDTO().getId() == productDTO.getId()) {
-                BasketItem basketItem = basketItemRepository.findById(basketlist.get(i).getBasketItemId()).get();
+        for (BasketItemDTO basketItemDTO : basketlist) {
+            if (Objects.equals(basketItemDTO.getProductDTO().getId(), productDTO.getId())) {
+                BasketItem basketItem = basketItemRepository.findById(basketItemDTO.getBasketItemId()).get();
                 basketItem.incQuantity();
                 basketItemRepository.save(basketItem);
                 return getBasket(username);
@@ -45,6 +47,7 @@ public class BasketService {
         return getBasket(username);
     }
 
+    /*Получение корзины по имени пользователя*/
     public List<BasketItemDTO> getBasket(String username) {
         List<BasketItemDTO> basketlist;
         User user = userRepository.findByUsername(username).get();
@@ -52,6 +55,7 @@ public class BasketService {
         return basketlist;
     }
 
+    /*Удаление продукта из корзины пользователя*/
     public List<BasketItemDTO> delProductFromBasket(ProductDTO productDTO, String username) {
         List<BasketItemDTO> basketlist = getBasket(username);
         BasketItemDTO basketItemDTO = basketlist.stream().filter(bi -> bi.getProductDTO().equals(productDTO)).findFirst().get();
@@ -60,6 +64,7 @@ public class BasketService {
         return getBasket(username);
     }
 
+    /*Получиеть количество продуктов в корзине*/
     public int getTotalQuantity(String username){
         int totalQuantity = 0;
         List<BasketItemDTO> basketlist = getBasket(username);
@@ -69,6 +74,7 @@ public class BasketService {
         return totalQuantity;
     }
 
+    /*Получить общую сумму*/
     public BigDecimal getTotalCost(String username) {
         BigDecimal totalCost = BigDecimal.ZERO;
         List<BasketItemDTO> basketlist = getBasket(username);
@@ -78,6 +84,7 @@ public class BasketService {
         return totalCost;
     }
 
+    /*Посчитать сумму товаров одно категории */
     public BigDecimal calculateCost(int itemQuantity, BigDecimal itemPrice){
         BigDecimal itemCost = BigDecimal.ZERO;
         BigDecimal totalCost = BigDecimal.ZERO;

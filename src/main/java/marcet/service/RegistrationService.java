@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 
+/*Сервис для регистрации пользователя*/
 @Slf4j
 @Service
 @RequiredArgsConstructor

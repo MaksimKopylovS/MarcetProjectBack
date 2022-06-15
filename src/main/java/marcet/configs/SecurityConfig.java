@@ -21,7 +21,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.csrf().disable();//Защита от подделки межсайтовых запросов, отключена
+        http.csrf().disable();//Защита от подделки меж сайтовых запросов, отключена
         http.cors();//
         http.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
         http.authorizeRequests() // метод для ограничения доступа

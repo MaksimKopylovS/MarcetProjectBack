@@ -14,6 +14,6 @@ import java.util.List;
 @Repository
 public interface ProductRepository extends JpaRepository<Product, Long>, JpaSpecificationExecutor<Product> {
 
-@Query("select distinct p from Product p left join p.categories categories where categories.title like %?1%")
+@Query("select distinct p from Product p left join p.categories categories where categories.title like CONCAT('%','@',?1,'%') ")
     List<Product> findDistinctProductsByCategories_TitleContaining(String category);
 }

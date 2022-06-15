@@ -16,6 +16,7 @@ import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
 
+/*Класс для работы с заказами*/
 @Slf4j
 @RequiredArgsConstructor
 @Service
@@ -31,7 +32,7 @@ public class OrderService {
     private final UserService userService;
     private final ModelMapper modelMapper;
 
-
+    /*ФОрмирование заказа*/
     public Order createOrder(String username, Long addressId) {
         User user = userRepository.findByUsername(username).get();
         Address address = addressService.findAddressById(addressId);
@@ -56,11 +57,13 @@ public class OrderService {
         return newOrder;
     }
 
+    /*Получение списка заказов по имени*/
     public List<OrderDTO> getAllByUsername (String username) {
         User user = userRepository.findByUsername(username).get();
         return orderRepository.findAllByUser(user).stream().map(OrderDTO::new).collect(Collectors.toList());
     }
 
+    /*Получение суммы заказы*/
     public BigDecimal getSumCost(List<ProductDTO> list) {
         BigDecimal sumCost = new BigDecimal(0);
         for (ProductDTO p : list) {
@@ -69,6 +72,7 @@ public class OrderService {
         return sumCost;
     }
 
+    /*Получение заказа по ID*/
     public OrderShowDTO showOrderOnNumber(Long orderNumber){
         log.info("OrderNumber - {}", orderNumber);
         Order order = orderRepository.getOne(orderNumber);
@@ -79,15 +83,15 @@ public class OrderService {
         log.info("Liset Size {}", orderItemList.size());
         List<ProductDTO> productList = getProductFromOrderItem(orderItemList);
 
-        OrderShowDTO orderShowDTOList = new OrderShowDTO(
+        return new OrderShowDTO(
                 userService.convertToDto(user),
                 addressService.convertToDto(order.getAddress()),
                 setQantityProductDTOList(productList, orderItemList),
                 orderItemList
         );
-        return orderShowDTOList;
     }
 
+    /*Получение списка продуктов из заказа*/
     private List<ProductDTO> getProductFromOrderItem(List<OrderItem> orderItemList){
         List<ProductDTO> productList = new ArrayList<>();
         for(OrderItem o : orderItemList){
@@ -106,6 +110,7 @@ public class OrderService {
         return orderItemDTO;
     }
 
+    /*Установить количество одних и техже продуктов*/
     private List<ProductDTO> setQantityProductDTOList(List<ProductDTO> productList, List<OrderItem> orderItemList){
         for (int i = 0; i < orderItemList.size(); i++){
             productList.get(i).setQuantity(orderItemList.get(i).getQuantity());

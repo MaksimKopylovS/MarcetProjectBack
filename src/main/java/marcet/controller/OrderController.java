@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import java.security.Principal;
 import java.util.List;
 
+/*Контролер для формирования заказа*/
 @Slf4j
 @RestController
 @CrossOrigin
@@ -22,6 +23,7 @@ public class OrderController {
 
     private final OrderService orderService;
 
+    /*Создание заказа*/
     @PostMapping("/create")
     public ResponseEntity<?> createOrder(@RequestBody CreateOrderDTO createOrderDTO) {
         log.info("Username - {}, address - {}", createOrderDTO.getUserName(), createOrderDTO.getAddressId());
@@ -31,6 +33,7 @@ public class OrderController {
         return ResponseEntity.ok(orderService.createOrder(createOrderDTO.getUserName(), createOrderDTO.getAddressId()));
     }
 
+    /*Отображение заказа по его ID*/
     @PostMapping("/show")
     public ResponseEntity<?> showOrderOnNumber(@RequestBody Long orderNumber) {
         System.out.println("Пришло");
@@ -38,6 +41,7 @@ public class OrderController {
         return ResponseEntity.ok(orderService.showOrderOnNumber(orderNumber));
     }
 
+    /*Отображение всех заказов по имени пользователя*/
     @GetMapping
     public List<OrderDTO> findAllOrderByUsername(Principal principal) {
         String username = principal.getName();

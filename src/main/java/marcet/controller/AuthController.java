@@ -5,7 +5,7 @@ import marcet.bean.JwtTokenUtil;
 import marcet.exceptions_handling.MarketError;
 import marcet.model.JwtRequest;
 import marcet.model.JwtResponse;
-import marcet.pojo.DataUserDTO;
+import marcet.model.DataUserDTO;
 import marcet.service.AddressService;
 import marcet.service.AuthService;
 import marcet.service.UserService;
@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+/*Класс контроллер для авторизации*/
 @RequiredArgsConstructor
 @RestController
 @CrossOrigin
@@ -31,13 +32,17 @@ public class AuthController {
     private final UserService userService;
     private final AddressService addressService;
 
+    /*Получения запроса на авторизацию*/
     @PostMapping("/auth")
     public ResponseEntity<?> createAuthTocen(@RequestBody JwtRequest authRequest) {
         try {
+            /*Отправка логина и пароля в менеджер аутентификации*/
             authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(authRequest.getUsername(), authRequest.getPassword()));
         } catch (BadCredentialsException ex) {
+            /*Если авторизация не пройдена отправка ошибки*/
             return new ResponseEntity<>(new MarketError(HttpStatus.UNAUTHORIZED.value(), "Ошибка авторизации"), HttpStatus.UNAUTHORIZED);
         }
+        /*Получение токена и оправка пользователя на фронт*/
         UserDetails userDetails = authService.loadUserByUsername(authRequest.getUsername());
         String token = jwtTokenUtil.generationToken(userDetails);
         DataUserDTO dataUserDTO = new DataUserDTO(

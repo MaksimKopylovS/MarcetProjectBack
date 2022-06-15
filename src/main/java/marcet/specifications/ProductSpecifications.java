@@ -7,13 +7,15 @@ import org.springframework.util.MultiValueMap;
 
 import javax.persistence.criteria.*;
 import java.math.BigDecimal;
-
+/*Клас спецификации, для сортировки продуктов по идентификаторам*/
 public class ProductSpecifications {
 
+    /*Сортировка по ID продукта*/
     private static Specification<Product> idFilter(Long lon) {
         return (Specification<Product>) (root, criteriaQuery, criteriaBuilder) -> criteriaBuilder.equal(root.get("productId"), lon);
     }
 
+    /*Сортировка по ID категории*/
     private static Specification<Product> FilterByCategory(Long id) {
         return (Specification<Product>) (root, criteriaQuery, criteriaBuilder) -> {
             Join<Product, Category> productCategoryJoin = root.join("categories");
@@ -21,18 +23,21 @@ public class ProductSpecifications {
         };
     }
 
+    /*Сортирофка по минимальной цене*/
     private static Specification<Product> priceGreaterOrEqualsThan(BigDecimal minPrice) {
         return (Specification<Product>) (root, criteriaQuery, criteriaBuilder) -> criteriaBuilder.greaterThanOrEqualTo(root.get("price"), minPrice);
     }
-
+    /*Сортировка по максимальной цене*/
     private static Specification<Product> priceLesserOrEqualsThan(BigDecimal maxPrice) {
         return (Specification<Product>) (root, criteriaQuery, criteriaBuilder) -> criteriaBuilder.lessThanOrEqualTo(root.get("price"), maxPrice);
     }
 
+    /*Сортировка по названию*/
     private static Specification<Product> titleLike(String titlePart) {
         return (Specification<Product>) (root, criteriaQuery, criteriaBuilder) -> criteriaBuilder.like(root.get("title"), String.format("%%%%s%%", titlePart));
     }
 
+    /*Сборка спецификации продуктов по заданным сортировкам*/
     public static Specification<Product> build(MultiValueMap<String, String> params) {
         Specification<Product> spec = Specification.where(null);
 

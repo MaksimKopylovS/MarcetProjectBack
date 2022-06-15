@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import java.lang.reflect.Type;
 import java.util.List;
 
+/*Класс сервис для работы с категориями */
 @Service
 @RequiredArgsConstructor
 public class CategoryService {
@@ -19,21 +20,19 @@ public class CategoryService {
     private final CategoryRepository categoryRepository;
     private final ModelMapper modelMapper;
 
+    /*Получение категорий*/
     public List<CategoryDTO> getCategoriyes() {
         List<Category> categoryList = categoryRepository.findAll();
         Type listType = new TypeToken<List<CategoryDTO>>() {
         }.getType();
-        List<CategoryDTO> categoryDTOList = modelMapper.map(categoryList, listType);
-        return categoryDTOList;
+        return modelMapper.map(categoryList, listType);
     }
 
     public CategoryDTO convertToDto(Category category) {
-        CategoryDTO categoryDTO = modelMapper.map(category, CategoryDTO.class);
-        return categoryDTO;
+        return modelMapper.map(category, CategoryDTO.class);
     }
 
     public Category convertyToEntity(CategoryDTO categoryDTO) throws ParserException {
-        Category category = modelMapper.map(categoryDTO, Category.class);
-        return category;
+        return modelMapper.map(categoryDTO, Category.class);
     }
 }
