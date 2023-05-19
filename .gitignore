@@ -1,11 +1,8 @@
 HELP.md
-target\
-!.mvn\wrapper\maven-wrapper.jar
-!**\src\main\**\target\
-!**\src\test\**\target\
-"C:\java\GeekBrains\Java_lesson\FourthFour\Level_Four_Itogoviy_Proekt\Monolith\Marcet\src\main\resources\secured.properties"
-/logs
-/Image
+target/
+!.mvn/wrapper/maven-wrapper.jar
+!**/src/main/**/target/
+!**/src/test/**/target/
 
 ### STS ###
 .apt_generated
@@ -24,14 +21,17 @@ target\
 *.ipr
 
 ### NetBeans ###
-\nbproject\private\
-\nbbuild\
-\dist\
-\nbdist\
-\.nb-gradle\
-build\
-!**\src\main\**\build\
-!**\src\test\**\build\
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+build/
+!**/src/main/**/build/
+!**/src/test/**/build/
 secured.properties
 ### VS Code ###
-.vscode\
+.vscode/
+logs
+
+
