@@ -21,7 +21,7 @@ spring:
         dialect: org.hibernate.dialect.MySQLDialect
   application:
     name: marcet-service
-
 logging:
-  file: logs/log_file.log
+  file:
+    name: logs/log_file.log
 
