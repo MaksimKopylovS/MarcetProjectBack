@@ -8,13 +8,12 @@ marcet\model\Address.class
 marcet\controller\ProductController.class
 marcet\service\ProductService.class
 marcet\dto\AddressDTO.class
+marcet\model\DataUserDTO.class
 marcet\controller\RegistrationController.class
 marcet\configs\AppConfig.class
-marcet\bean\Multipart.class
 marcet\repository\AddressRepository.class
 marcet\bean\JwtTokenUtil.class
 marcet\dto\OrderDTO.class
-marcet\pojo\DataUserDTO.class
 marcet\configs\SecurityConfig.class
 marcet\dto\CategoryDTO.class
 marcet\service\CategoryService$1.class
@@ -43,7 +42,6 @@ marcet\repository\OrderItemsRepository.class
 marcet\controller\OrderController.class
 marcet\controller\BasketController.class
 marcet\model\Role.class
-marcet\specifications\ProductSpecifications$1.class
 marcet\dto\BasketItemDTO.class
 marcet\service\RegistrationService.class
 marcet\dto\ImageDTO.class
