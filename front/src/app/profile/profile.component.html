@@ -1,0 +1,24 @@
+<div class="modal-header">
+  <h5 class="modal-title" id="modal-basic-title">Профиль</h5>
+  <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.dismiss('Cross click')"></button>
+</div>
+
+<div class="modal-body">
+  <ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-tabs">
+    <li [ngbNavItem]="1">
+      <a ngbNavLink>Вход</a>
+      <ng-template ngbNavContent>
+        <profile-login></profile-login>
+      </ng-template>
+    </li>
+
+    <li [ngbNavItem]="2">
+      <a ngbNavLink>Регистрация</a>
+      <ng-template ngbNavContent>
+        <profile-registration></profile-registration>
+      </ng-template>
+    </li>
+  </ul>
+
+  <div [ngbNavOutlet]="nav" class="mt-2"></div>
+</div>

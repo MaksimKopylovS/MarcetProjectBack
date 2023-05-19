@@ -1,0 +1,15 @@
+<div class="admin-panel-wrapper col-md-8 col-lg-6 m-auto ">
+  <h1>Admin panel</h1>
+  <div class="col">
+    <button [routerLink]="['/admin-panel/edit']" class="btn btn-secondary btn-sm">Создать</button>
+  </div>
+    <div clas="row-cols-4">
+      <admin-panel-item *ngFor="let item of items" [item]="item"></admin-panel-item>
+    </div>
+  <div class="mt-auto pagination-bar">
+    <ngb-pagination [collectionSize]="totalElems" [(page)]="pageNum" [maxSize]="pageSize"
+                    [rotate]="true" [boundaryLinks]="true"  aria-label="Default pagination"
+                    (pageChange)="onPageChange(pageNum)" class="d-flex justify-content-center">
+    </ngb-pagination>
+  </div>
+</div>

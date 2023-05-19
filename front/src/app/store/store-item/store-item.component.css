@@ -1,0 +1,23 @@
+.card {
+  width: 12rem;
+  height: 20rem;
+}
+
+.card-img-top {
+  width: 12rem;
+  height: 12rem;
+}
+
+.div_image {
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.card-img-top {
+  object-fit: cover;
+  width: auto;
+
+}

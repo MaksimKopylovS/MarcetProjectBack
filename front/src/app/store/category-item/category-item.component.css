@@ -1,0 +1,11 @@
+.category-item-wrapper {
+  display: flex;
+  height: 3rem;
+  margin: 0.25rem;
+  padding: 0 16px;
+  align-items: center;
+}
+
+.category-item-wrapper:hover {
+  background: rgba(0, 0, 0, 0.05);
+}

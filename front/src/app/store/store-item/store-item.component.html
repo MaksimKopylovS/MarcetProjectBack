@@ -1,0 +1,25 @@
+<div class="col d-inline-flex m-2">
+  <div class="card">
+    <div class="div_image">
+      <img *ngIf=image [routerLink]="['/store', item.id]"
+           class="card-img-top" src={{image}}>
+      <img *ngIf=!image [routerLink]="['/store', item.id]"
+           class="card-img-top" src="/assets/items/placeholder.png">
+    </div>
+    <div class="m-1">
+      <div class="h6 my-1">{{item.title}}</div>
+      <div class="card-text">{{item.shortDescription}}</div>
+    </div>
+    <div class="row mt-auto mb-2">
+      <div class="col">
+        <div class="text-center offset-6">{{item.price}}$</div>
+      </div>
+      <div class="col-4">
+        <button (click)="buyButtonClickHandler()" role="button"
+                class="btn btn-primary btn-block">
+          <i class="bi bi-cart"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

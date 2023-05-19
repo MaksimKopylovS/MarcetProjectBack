@@ -1,0 +1,9 @@
+.content-outer-container {
+  min-height: 100%;
+  background-color: #f8f9fa;
+}
+
+.content-inner-container {
+  /* footer */
+  padding-bottom: 36px;
+}

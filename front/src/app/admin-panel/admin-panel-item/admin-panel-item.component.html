@@ -1,0 +1,33 @@
+<div class="admin-panel-item-wrapper my-1">
+  <div class="d-flex flex-row">
+    <!-- Site icon -->
+    <div class="me-2">
+      <img [routerLink]="['/store']" class="img-fluid admin-panel-image-size" src="/assets/items/placeholder.png">
+    </div>
+
+    <!-- Search bar-->
+    <div class="flex-fill form-group has-search">
+      <!-- <span class="fa fa-search form-control-feedback"></span> -->
+      <h5>{{item.title}}</h5>
+    </div>
+
+    <!-- Cart button -->
+    <div>
+      <button type="button" (click)="handleEdit()"
+              class="btn btn-default btn-number">
+        <i class="fa fa-edit"></i>
+      </button>
+    </div>
+
+    <!-- Cart button -->
+    <div>
+      <button type="button" (click)="handleDelete()"
+              class="btn btn-default btn-number">
+        <i class="fa fa-ban"></i>
+      </button>
+    </div>
+  </div>
+
+</div>
+
+

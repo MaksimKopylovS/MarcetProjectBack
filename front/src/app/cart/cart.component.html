@@ -1,0 +1,10 @@
+<div class="col-md-8 col-lg-6 m-auto">
+  <div class="p-3">
+    <cart-item *ngFor="let item of cartItems" [item]="item"></cart-item>
+  </div>
+  <button (click)="createOrder()" role="button"
+          class="btn btn-primary btn-block">
+    Оформить.
+  </button>
+</div>
+

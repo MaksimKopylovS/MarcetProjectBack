@@ -1,0 +1,29 @@
+<div class="m-2">
+    <div class="row">
+        <div class="col-6">
+            <img *ngIf=image class="card-img-top" src={{image}}>
+            <img *ngIf=!image class="card-img-top" src="/assets/items/placeholder.png">
+        </div>
+        <div class="col-6">
+            <div class="row">
+                <h1>{{item?.title}}</h1>
+            </div>
+            <div class="row">
+                <h3>{{item?.shortDescription}}</h3>
+            </div>
+            <div class="row">
+                <p>{{item?.fullDescription}}</p>
+            </div>
+            <div class="row mt-auto">
+                <div class="col-4">
+                    <h4>{{item?.price}}$</h4>
+                </div>
+                <div class="col-4">
+                    <button role="button" class="btn btn-primary btn-block">
+                        <i class="bi bi-cart"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

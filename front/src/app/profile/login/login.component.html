@@ -1,0 +1,20 @@
+<form [formGroup]="loginForm" (ngSubmit)="login(loginForm.value)"
+      autocomplete="off" novalidate>
+  <div [ngClass]="{'error' : !validateUserName()}" class="form-group">
+    <label for="userName">Логин:</label>
+    <em *ngIf="!validateUserName()">Required</em>
+    <input formControlName="userName" id="userName" type="text"
+           class="form-control" placeholder=""/>
+  </div>
+  <div [ngClass]="{'error' : !validatePassword()}" class="form-group">
+    <label for="password">Пароль:</label>
+    <em *ngIf="!validatePassword()">Required</em>
+    <input formControlName="password" id="password" type="password"
+           class="form-control" placeholder=""/>
+  </div>
+
+  <button [disabled]="!validateAll()"
+          type="submit" class="btn btn-primary my-3">
+    Войти
+  </button>
+</form>

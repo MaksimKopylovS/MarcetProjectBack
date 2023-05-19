@@ -1,0 +1,13 @@
+.pagination-container {
+  min-height: 100%;
+}
+
+.pagination-bar {
+  height: 24px;
+  margin-top: -36px;
+}
+
+.pagination-padding {
+  /* footer */
+  padding-bottom: 36px;
+}

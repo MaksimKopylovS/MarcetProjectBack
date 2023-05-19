@@ -1,0 +1,14 @@
+.admin-panel-item-wrapper {
+    height: 2.5rem;
+    background-color: #FFF;
+    background-clip: border-box;
+    border: 1px solid rgba(0, 0, 0, 0.125);
+    border-radius: 0.25rem;
+    overflow: hidden;
+}
+
+.admin-panel-image-size {
+    height:2rem;
+    width:2rem;
+    vertical-align: middle;
+}

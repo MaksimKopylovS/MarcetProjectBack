@@ -1,0 +1,16 @@
+<div class="row pagination-container">
+  <div class="col-md-3">
+    <category></category>
+  </div>
+  <div class="col-md-9 pagination-padding">
+    <div clas="row-cols-4">
+      <store-item *ngFor="let item of items" [item]="item"></store-item>
+    </div>
+    <div class="mt-auto pagination-bar">
+      <ngb-pagination [collectionSize]="totalElems" [(page)]="pageNum" [maxSize]="pageSize"
+                      [rotate]="true" [boundaryLinks]="true" aria-label="Default pagination"
+                      (pageChange)="onPageChange(pageNum)" class="d-flex justify-content-center">
+      </ngb-pagination>
+    </div>
+  </div>
+</div>
