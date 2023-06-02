@@ -34,12 +34,10 @@ public class ProductService {
     private final String ROOT_PATH = "Image";
 
     public ProductDTO convertToDto(Product product){
-        ProductDTO productDTO = modelMapper.map(product, ProductDTO.class);
-        return productDTO;
+        return modelMapper.map(product, ProductDTO.class);
     }
     public Product convertToEntity(ProductDTO productDTO){
-        Product product = modelMapper.map(productDTO, Product.class);
-        return product;
+        return modelMapper.map(productDTO, Product.class);
     }
 
     public ImageDTO getProductImage(Long productID) throws IOException {
@@ -51,8 +49,7 @@ public class ProductService {
     public List<ProductDTO> getProduct() {
         List<Product> productList = productRepository.findAll();
         Type listType = new TypeToken<List<ProductDTO>>(){}.getType();
-        List<ProductDTO> productDTOList = modelMapper.map(productList,listType);
-        return productDTOList;
+        return modelMapper.map(productList,listType);
     }
 
     public Page<ProductDTO> findAllProducts(Specification<Product> spec, int page, int pageSize) {
@@ -78,7 +75,7 @@ public class ProductService {
     }
 
     public ProductDTO saveNewProduct(ProductDTO productDTO) {
-        Product newProduct = new Product();
+        Product newProduct;
         productDTO.setId(null);
         newProduct = convertToEntity(productDTO);
         productRepository.save(newProduct);
@@ -103,10 +100,6 @@ public class ProductService {
 
     public Product findProductById(Long product_id) {
         return productRepository.findById(product_id).get();
-    }
-
-    public List<Category> findCategoriesById(Long id) { //LSS это не нужно
-        return productRepository.findById(id).get().getCategories();
     }
 
     public ProductDTO createNewProduct(List<MultipartFile> multipartFiles, List<String> listProductDTO) throws IOException {

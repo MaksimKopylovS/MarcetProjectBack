@@ -45,7 +45,6 @@ public class JwtRequestFilter extends OncePerRequestFilter {
             }
         }
 
-
         if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
             /*Если имя пользователя не равна, проходит аутентификация пользователя*/
             UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(

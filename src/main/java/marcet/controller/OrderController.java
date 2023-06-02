@@ -36,7 +36,6 @@ public class OrderController {
     /*Отображение заказа по его ID*/
     @PostMapping("/show")
     public ResponseEntity<?> showOrderOnNumber(@RequestBody Long orderNumber) {
-        System.out.println("Пришло");
         log.info("OrderNumber {}", orderNumber);
         return ResponseEntity.ok(orderService.showOrderOnNumber(orderNumber));
     }
@@ -45,7 +44,6 @@ public class OrderController {
     @GetMapping
     public List<OrderDTO> findAllOrderByUsername(Principal principal) {
         String username = principal.getName();
-        System.out.println(username);
         List<OrderDTO> orderList = orderService.getAllByUsername(username);
         return orderList;
     }

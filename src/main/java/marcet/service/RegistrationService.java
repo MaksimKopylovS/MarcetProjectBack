@@ -8,8 +8,6 @@ import marcet.repository.UserRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.persistence.EntityManager;
-
 /*Сервис для регистрации пользователя*/
 @Slf4j
 @Service
@@ -21,7 +19,7 @@ public class RegistrationService {
     @Transactional
     public void registrationUser(UserDTO userDTO) {
         log.info("Логин - {}, Пароль - {},  Почта - {}", userDTO.getUsername(), userDTO.getPassword(), userDTO.getMail());
-        User user = userService.convertyToEntity(userDTO);
+        User user = userService.convertToEntity(userDTO);
         userRepository.save(user);
     }
 }

@@ -16,16 +16,14 @@ public class UserService {
     private final ModelMapper modelMapper;
 
     public UserDTO convertToDto(User user) {
-        UserDTO userDTO = modelMapper.map(user, UserDTO.class);
-        return userDTO;
+        return modelMapper.map(user, UserDTO.class);
     }
 
-    public User convertyToEntity(UserDTO userDTO) throws ParserException {
-        User user = modelMapper.map(userDTO, User.class);
-        return user;
+    public User convertToEntity(UserDTO userDTO) throws ParserException {
+        return modelMapper.map(userDTO, User.class);
     }
 
-    public User getUserFromName (String userName){
+    public User getUserFromName(String userName){
            return userRepository.findByUsername(userName).get();
     }
 }

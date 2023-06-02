@@ -63,15 +63,6 @@ public class OrderService {
         return orderRepository.findAllByUser(user).stream().map(OrderDTO::new).collect(Collectors.toList());
     }
 
-    /*Получение суммы заказы*/
-    public BigDecimal getSumCost(List<ProductDTO> list) {
-        BigDecimal sumCost = new BigDecimal(0);
-        for (ProductDTO p : list) {
-            sumCost = sumCost.add(p.getPrice());
-        }
-        return sumCost;
-    }
-
     /*Получение заказа по ID*/
     public OrderShowDTO showOrderOnNumber(Long orderNumber){
         log.info("OrderNumber - {}", orderNumber);
@@ -86,7 +77,7 @@ public class OrderService {
         return new OrderShowDTO(
                 userService.convertToDto(user),
                 addressService.convertToDto(order.getAddress()),
-                setQantityProductDTOList(productList, orderItemList),
+                setQuantityProductDTOList(productList, orderItemList),
                 orderItemList
         );
     }
@@ -101,17 +92,11 @@ public class OrderService {
     }
 
     public OrderItem convertyToEntity(OrderItemDTO orderItemDTO) throws ParserException {
-        OrderItem orderItem = modelMapper.map(orderItemDTO, OrderItem.class);
-        return orderItem;
-    }
-
-    public OrderItemDTO convertToDto(OrderItem orderItem) {
-        OrderItemDTO orderItemDTO = modelMapper.map(orderItem, OrderItemDTO.class);
-        return orderItemDTO;
+        return modelMapper.map(orderItemDTO, OrderItem.class);
     }
 
     /*Установить количество одних и техже продуктов*/
-    private List<ProductDTO> setQantityProductDTOList(List<ProductDTO> productList, List<OrderItem> orderItemList){
+    private List<ProductDTO> setQuantityProductDTOList(List<ProductDTO> productList, List<OrderItem> orderItemList){
         for (int i = 0; i < orderItemList.size(); i++){
             productList.get(i).setQuantity(orderItemList.get(i).getQuantity());
         }

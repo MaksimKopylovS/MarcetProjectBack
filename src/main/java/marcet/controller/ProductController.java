@@ -59,8 +59,6 @@ public class ProductController {
         @RequestMapping(value = "/get-all", method = RequestMethod.GET)
     public Page<ProductDTO> findAllProducts(@RequestParam MultiValueMap<String, String> params,
                                             @RequestParam(name = "page", defaultValue = "1") Integer page) {
-        System.out.println(params.getClass());
-        System.out.println(page + " Пришло в ProductController");
         Iterator<String> iteratot = params.keySet().iterator();
         log.info("params size - {}", params.size());
         while (iteratot.hasNext()) {

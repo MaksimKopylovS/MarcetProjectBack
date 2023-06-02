@@ -33,8 +33,8 @@ public class BasketService {
     public List<BasketItemDTO> addProductToBasket(ProductDTO productDTO, String username) {
         User user = userRepository.findByUsername(username).get();
         Product product = productService.findProductById(productDTO.getId());
-        List<BasketItemDTO> basketlist = getBasket(username);
-        for (BasketItemDTO basketItemDTO : basketlist) {
+        List<BasketItemDTO> basketList = getBasket(username);
+        for (BasketItemDTO basketItemDTO : basketList) {
             if (Objects.equals(basketItemDTO.getProductDTO().getId(), productDTO.getId())) {
                 BasketItem basketItem = basketItemRepository.findById(basketItemDTO.getBasketItemId()).get();
                 basketItem.incQuantity();
@@ -107,8 +107,6 @@ public class BasketService {
     public void clearBasket(String username) {
         User user = userRepository.findByUsername(username).get();
         List<BasketItem> basketItems = basketItemRepository.findAllByUser(user);
-        for (BasketItem bi: basketItems) {
-            basketItemRepository.delete(bi);
-        }
+        basketItemRepository.deleteAll(basketItems);
     }
 }

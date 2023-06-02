@@ -28,10 +28,6 @@ public class CategoryService {
         return modelMapper.map(categoryList, listType);
     }
 
-    public CategoryDTO convertToDto(Category category) {
-        return modelMapper.map(category, CategoryDTO.class);
-    }
-
     public Category convertyToEntity(CategoryDTO categoryDTO) throws ParserException {
         return modelMapper.map(categoryDTO, Category.class);
     }
